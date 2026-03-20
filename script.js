@@ -4,8 +4,8 @@ import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers
 env.allowLocalModels = true;
 env.allowRemoteModels = false;
 // এটি অবশ্যই true থাকতে হবে যাতে একবার ডাউনলোড হলে ব্রাউজার সেটা মনে রাখে
-// env.useBrowserCache = true;
-env.useBrowserCache = false;
+env.useBrowserCache = true;
+// env.useBrowserCache = false;
 env.localModelPath = '';
 
 let classifier;
