@@ -39,7 +39,7 @@ toggleSwitch.addEventListener('change', (e) => {
 async function init() {
     try {
         statusText.textContent = "মডেল চেক করা হচ্ছে...";
-        classifier = await pipeline('sentiment-analysis', 'quantized_model', {
+        classifier = await pipeline('sentiment-analysis', './quantized_model', {
             model_file: 'model_quantized.onnx',
             quantized: true,
             // এখানে cache_dir ব্যবহার করলে ব্রাউজার ইন্ডেক্সডডিবি-তে ফাইলটি রাখবে
