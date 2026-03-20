@@ -38,15 +38,16 @@ toggleSwitch.addEventListener('change', (e) => {
 // ২. মডেল লোড
 async function init() {
     try {
-        statusText.textContent = "মডেল চেক করা হচ্ছে...";
+        // ইউজারকে মডেল লোড এবং অফলাইন ফিচারের তথ্য দেখানো
+        statusText.innerHTML = "আমাদের AI মডেলটি আপনার ব্রাউজারে লোড হচ্ছে। এটি মাত্র একবারই ডাউনলোড হবে, এরপর থেকে আপনি অফলাইনেও এটি ব্যবহার করতে পারবেন।<br><br><span style='font-weight:bold; color:var(--primary-color);'>মডেল চেক করা হচ্ছে...</span>";
+        
         classifier = await pipeline('sentiment-analysis', './quantized_model', {
             model_file: 'model_quantized.onnx',
             quantized: true,
-            // এখানে cache_dir ব্যবহার করলে ব্রাউজার ইন্ডেক্সডডিবি-তে ফাইলটি রাখবে
             cache_dir: 'models-cache',
             progress_callback: (info) => {
                 if (info.status === 'progress') {
-                    statusText.textContent = `ডাউনলোড হচ্ছে: ${info.progress.toFixed(1)}%`;
+                    statusText.innerHTML = `আমাদের AI মডেলটি আপনার ব্রাউজারে লোড হচ্ছে। এটি মাত্র একবারই ডাউনলোড হবে, এরপর থেকে আপনি অফলাইনেও এটি ব্যবহার করতে পারবেন।<br><br><b style='color:#3498db;'>ডাউনলোড হচ্ছে: ${info.progress.toFixed(1)}%</b>`;
                 }
             }
         });
