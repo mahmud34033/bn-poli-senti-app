@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BanglaBERT Sentiment XAI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+        <span id="mode-text">ডার্ক মোড</span>
+    </div>
+
+    <div class="container">
+        <h1>BD বাংলা সেন্টিমেন্ট অ্যানালাইজার</h1>
+        <p class="subtitle" id="cache-status">AI চালিত রিয়েল-টাইম মন্তব্য বিশ্লেষণ</p>
+
+        <div id="loading-section">
+            <div class="spinner"></div>
+            <p id="status">মডেল ফাইলগুলো চেক করা হচ্ছে...</p>
+        </div>
+
+        <div id="main-interface" class="hidden">
+            <textarea id="inputText" placeholder="এখানে আপনার মন্তব্যটি টাইপ করুন..."></textarea>
+
+            <div class="result-card">
+                <div class="result-header">
+                    <span>প্রেডিকশন:</span>
+                    <strong id="label">অপেক্ষমান</strong>
+                </div>
+
+                <div class="confidence-container">
+                    <div class="bar-bg">
+                        <div id="bar" style="width: 0%"></div>
+                    </div>
+                    <div class="score-text">সবচেয়ে বেশি কনফিডেন্স: <span id="score">0%</span></div>
+                </div>
+
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee; opacity: 0.5;">
+
+                <div id="detailed-results" style="font-size: 0.85em; color: var(--text-sub);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>পজিটিভ (Positive):</span> <span id="pos-val">0%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>নেগেটিভ (Negative):</span> <span id="neg-val">0%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>নিউট্রাল (Neutral):</span> <span id="neu-val">0%</span>
+                    </div>
+                </div>
+
+                <div id="explanation-section" class="hidden"
+                    style="margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 15px;">
+                    <button id="explainBtn"
+                        style="background: var(--primary-color); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
+                        🔍 Explain with LIME (XAI)
+                    </button>
+                    <div id="lime-output" style="margin-top: 15px; display: none;">
+                        <p style="font-size: 0.85em; color: var(--text-sub); margin-bottom: 10px;">Word Importance
+                            Highlights:</p>
+                        <div id="highlighted-text"
+                            style="line-height: 2; font-size: 1.1em; padding: 10px; background: #fff; border-radius: 8px; border: 1px solid #eee;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="resetBtn" class="btn-reset">সব মুছে ফেলুন</button>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
