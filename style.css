@@ -197,3 +197,12 @@ textarea:focus {
 .hidden {
     display: none;
 }
+
+#lime-output {
+    background: var(--card-bg) !important; /* থিম অনুযায়ী ব্যাকগ্রাউন্ড পাল্টাবে */
+    border: 1px solid var(--text-sub);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+    /* color: var(--text-main); */
+}

@@ -163,16 +163,19 @@ explainBtn.addEventListener('click', async () => {
 
     highlightedText.innerHTML = wordImportance.map(item => {
         if (topIndices.includes(item.index)) {
-            // রিলেটিভ অপাসিটি (বড় সেন্টেন্সেও কাজ করবে)
             let relativeOpacity = (item.impact / maxImpact) * 0.7; 
-            let opacity = Math.max(0.2, relativeOpacity); 
+            let opacity = Math.max(0.3, relativeOpacity); 
             
-            let color = `rgba(${baseColorRgb}, ${opacity})`;
-            return `<span style="background-color: ${color}; padding: 2px 6px; border-radius: 4px; margin: 0 2px; font-weight: bold; border: 1px solid rgba(${baseColorRgb}, 0.2);">
+            // এখানে color: #000 (কালো) দিলে হালকা ব্যাকগ্রাউন্ডে লেখা ভালো ফুটবে
+            // অথবা কালার ডাইনামিক করতে চাইলে var(--text-main) দিতে পারেন
+            let textColor = "#000000"; 
+            
+            return `<span style="background-color: rgba(${baseColorRgb}, ${opacity}); color: ${textColor}; padding: 3px 8px; border-radius: 6px; margin: 0 3px; font-weight: bold; display: inline-block; border: 1px solid rgba(${baseColorRgb}, 0.3);">
                 ${item.word}
             </span>`;
         } else {
-            return `<span style="margin: 0 2px; color: var(--text-main); opacity: 0.8;">${item.word}</span>`;
+            // সাধারণ শব্দের জন্য CSS ক্লাস ব্যবহার করা হচ্ছে
+            return `<span class="normal-word" style="margin: 0 2px;">${item.word}</span>`;
         }
     }).join(' ');
 });
